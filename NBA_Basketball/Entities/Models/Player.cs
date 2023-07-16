@@ -31,6 +31,10 @@ public partial class Player
 
     public DateTime? RetirementTime { get; set; }
 
+    public int Experience => 2017 - JoinYear.Year;
+
+    public string ShortDateOfBirth => (((DateTime)DateOfBirth)).ToString("MM/dd/yyyy");
+    
     public virtual Country CountryCodeNavigation { get; set; } = null!;
 
     public virtual ICollection<MatchupLog> MatchupLogs { get; set; } = new List<MatchupLog>();

@@ -2,9 +2,11 @@
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media.Imaging;
 using NBA_Basketball.AllWindowsWindow;
 using NBA_Basketball.Entities;
+using NBA_Basketball.Models;
 using NBA_Basketball.Resources;
 
 namespace NBA_Basketball.AllWindows;
@@ -25,7 +27,7 @@ public partial class MainScreenWindow : Window
             AppMain appMain = new AppMain();
             CurrentSeasonTextBlock.Text = appMain.SeasonShow();
         }
-        catch(IOException exc)
+        catch (IOException exc)
         {
             MessageBox.Show(exc.Message);
         }
@@ -45,6 +47,7 @@ public partial class MainScreenWindow : Window
             MessageBox.Show(ex.Message);
         }
     }
+
     private void GoLeftButton_OnClick(object sender, RoutedEventArgs e)
     {
         try
@@ -73,11 +76,12 @@ public partial class MainScreenWindow : Window
                 allImages.Add(image);
             }
         }
-        catch(IOException exc)
+        catch (IOException exc)
         {
             MessageBox.Show(exc.Message);
         }
     }
+
     private void ImagesShow(string direction)
     {
         switch (direction)
@@ -111,6 +115,7 @@ public partial class MainScreenWindow : Window
             if (currentPosition == allImages.Count - 1)
                 currentPosition = 0;
         }
+
         void LeftIndexCheck()
         {
             if (currentPosition == 0)
@@ -127,6 +132,5 @@ public partial class MainScreenWindow : Window
 
     private void AdminButton_OnClick(object sender, RoutedEventArgs e)
     {
-        
     }
 }

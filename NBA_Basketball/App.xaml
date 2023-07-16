@@ -4,41 +4,67 @@
              StartupUri="AllWindows/MainScreenWindow.xaml">
     <Application.Resources>
         <Style TargetType="TextBlock" x:Key="HeaderTextBlock">
-            <Setter Property="FontFamily" Value="Arial"></Setter>
-            <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="Margin" Value="15"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-            <Setter Property="Foreground" Value="#383838"></Setter>
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="15" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#383838" />
         </Style>
         <Style TargetType="TextBlock" x:Key="DescriptionTextBlock">
-            <Setter Property="FontFamily" Value="Arial"></Setter>
-            <Setter Property="FontSize" Value="16"></Setter>
-            <Setter Property="Margin" Value="10"></Setter>
-            <Setter Property="TextWrapping" Value="Wrap"></Setter>
-            <Setter Property="TextAlignment" Value="Center"></Setter>
-            <Setter Property="Foreground" Value="#383838"></Setter>
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#383838" />
         </Style>
         <Style TargetType="TextBlock" x:Key="MainTextBlock">
-            <Setter Property="FontFamily" Value="Arial"></Setter>
-            <Setter Property="FontSize" Value="14"></Setter>
-            <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="Foreground" Value="#383838"></Setter>
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Foreground" Value="#383838" />
         </Style>
         <Style TargetType="Button" x:Key="MainButton">
-            <Setter Property="Background" Value="#6996c2"></Setter>
-            <Setter Property="BorderThickness" Value="0"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="FontFamily" Value="Arial"></Setter>
-            <Setter Property="FontSize" Value="20"></Setter>
-            <Setter Property="Margin" Value="5"></Setter>
-            <Setter Property="Height" Value="45"></Setter>
-            <Setter Property="FontWeight" Value="Medium"></Setter>
+            <Setter Property="Background" Value="#6996c2" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Height" Value="45" />
+            <Setter Property="FontWeight" Value="Medium" />
         </Style>
         <Style TargetType="Button" x:Key="ControlButton">
-            <Setter Property="Foreground" Value="#383838"></Setter>
-            <Setter Property="FontFamily" Value="Arial"></Setter>
-            <Setter Property="FontSize" Value="14"></Setter>
-            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="#383838" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        <Style TargetType="DataGridColumnHeader" x:Key="DataGridHeader">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#383838" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="DataGridElement">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Foreground" Value="#383838" />
+        </Style>
+        <Style TargetType="DataGrid" x:Key="DefaultDataGrid">
+            <Setter Property="CanUserAddRows" Value="False" />
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserSortColumns" Value="False"/>
+            <Setter Property="Height" Value="300"/>
+            <Setter Property="MaxWidth" Value="800"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="BorderBrush" Value="#383838"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
         </Style>
     </Application.Resources>
 </Application>

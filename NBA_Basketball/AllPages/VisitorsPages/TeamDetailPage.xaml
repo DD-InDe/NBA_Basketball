@@ -1,0 +1,107 @@
+﻿<Page x:Class="NBA_Basketball.AllPages.VisitorsPages.TeamDetailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Title="Team Detail" Height="auto" Width="auto">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <!-- team info -->
+            <StackPanel Orientation="Horizontal" x:Name="TeamInfoStackPanel">
+                <Image Width="70" Height="70" Source="{Binding LogoImage}" />
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource DescriptionTextBlock}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} | {1} of {2}">
+                            <Binding Path="TeamName" />
+                            <Binding Path="Division.Name" />
+                            <Binding Path="Division.Conference.Name" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+            <TabControl>
+                <!-- roster -->
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="Roster" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <DataGrid x:Name="RosterDataGrid" Style="{StaticResource DefaultDataGrid}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="No."
+                                                    Binding="{Binding ShirtNumber}"/>
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Name"
+                                                    Binding="{Binding Player.Name}" />
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Position"
+                                                    Binding="{Binding Player.Position.Name}" />
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}"
+                                                    Header="Date of Birth" Binding="{Binding Player.ShortDateOfBirth}" />
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="College"
+                                                    Binding="{Binding Player.College}" />
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Experience"
+                                                    Binding="{Binding Player.Experience}" />
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Salary"
+                                                    Binding="{Binding Salary}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem.Content>
+                </TabItem>
+                <!-- matchup -->
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="Matchup" />
+                    </TabItem.Header>
+                    <TabItem.Content>
+                        <DataGrid x:Name="MatchupDataGrid" Style="{StaticResource DefaultDataGrid}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Date"
+                                                    Binding="{Binding DateStart}">
+                                </DataGridTextColumn>
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}"
+                                                    Header="Matchup Type"
+                                                    Binding="{Binding MatchupType.Name}">
+                                </DataGridTextColumn>
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}" x:Name="OpponentColumn"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Opponent"
+                                                    Binding="{Binding Opponent}">
+                                </DataGridTextColumn>
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Start time"
+                                                    Binding="{Binding TimeStart}">
+                                </DataGridTextColumn>
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Result"
+                                                    Binding="{Binding TotalScore}">
+                                </DataGridTextColumn>
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Location"
+                                                    Binding="{Binding Location}">
+                                </DataGridTextColumn>
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    ElementStyle="{StaticResource DataGridElement}" Header="Status"
+                                                    Binding="{Binding StatusName}">
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem.Content>
+                </TabItem>
+                <!-- lineup -->
+                <TabItem>
+                    <TabItem.Header>
+                        <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="Lineup"/>
+                    </TabItem.Header>
+                </TabItem>
+            </TabControl>
+        </StackPanel>
+    </Grid>
+</Page>

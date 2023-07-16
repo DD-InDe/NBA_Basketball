@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NBA_Basketball.Models;
 
@@ -17,11 +19,30 @@ public partial class Matchup
 
     public DateTime StartTime { get; set; }
 
+    public string DateStart => StartTime.ToString("MM/dd/yyyy");
+
+    public string TimeStart => StartTime.ToString("hh:mm tt");
+
+
+    public string StatusName
+    {
+        get
+        {
+            if (Status == -1) return "Not start";
+            if (Status == 0) return "Running";
+            else return "Finished";
+        }
+    }
+
     public int TeamAwayScore { get; set; }
 
     public int TeamHomeScore { get; set; }
 
     public string? Location { get; set; }
+
+    public string Opponent { get; set; }
+    // public string? TotalScore { get; set; } = null!;
+
 
     public int Status { get; set; }
 
@@ -40,4 +61,5 @@ public partial class Matchup
     public virtual Team TeamAwayNavigation { get; set; } = null!;
 
     public virtual Team TeamHomeNavigation { get; set; } = null!;
+
 }

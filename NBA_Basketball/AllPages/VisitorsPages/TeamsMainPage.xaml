@@ -5,12 +5,144 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:NBA_Basketball.AllPages.VisitorsPages"
       mc:Ignorable="d"
+      Loaded="TeamsMainPage_OnLoaded"
       Title="Teams Main" Height="auto" Width="auto">
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <StackPanel Height="400" Width="300" Background="Black"></StackPanel>
-            <StackPanel Height="400" Width="300" Background="Aquamarine"></StackPanel>
-            <StackPanel Height="400" Width="300"></StackPanel>
-        </StackPanel>
+        <TabControl x:Name="Conferences" Margin="20">
+            <!-- eastern -->
+            <TabItem x:Name="EasternItems">
+                <TabItem.Header>
+                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="Eastern" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <!-- atlantic -->
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Style="{StaticResource HeaderTextBlock}" Text="Atlantic" />
+                            <ListView x:Name="AtlanticTeamsListView" Height="350" Width="300">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Style="{StaticResource DescriptionTextBlock}"
+                                                           Text="{Binding TeamName}" />
+                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
+                                                           Text="Click on Logo to get more info" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                        <!-- central -->
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Style="{StaticResource HeaderTextBlock}" Text="Central" />
+                            <ListView x:Name="CentralTeamsListView" Height="350" Width="300">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Style="{StaticResource DescriptionTextBlock}"
+                                                           Text="{Binding TeamName}" />
+                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
+                                                           Text="Click on Logo to get more info" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                        <!-- southeast -->
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Style="{StaticResource HeaderTextBlock}" Text="Southeast" />
+                            <ListView x:Name="SoutheastTeamsListView" Height="350" Width="300">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Style="{StaticResource DescriptionTextBlock}"
+                                                           Text="{Binding TeamName}" />
+                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
+                                                           Text="Click on Logo to get more info" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <!-- western -->
+            <TabItem x:Name="WesternItems">
+                <TabItem.Header>
+                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="Western" />
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <!-- atlantic -->
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Style="{StaticResource HeaderTextBlock}" Text="Southwest" />
+                            <ListView x:Name="SouthwesternTeamsListView" Height="350" Width="300">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Style="{StaticResource DescriptionTextBlock}"
+                                                           Text="{Binding TeamName}" />
+                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
+                                                           Text="Click on the logo to see more info" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                        <!-- central -->
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Style="{StaticResource HeaderTextBlock}" Text="Northwest" />
+                            <ListView x:Name="NorthwesternTeamsListView" Height="350" Width="300">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Style="{StaticResource DescriptionTextBlock}"
+                                                           Text="{Binding TeamName}" />
+                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
+                                                           Text="Click on Logo to get more info" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                        <!-- southeast -->
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Style="{StaticResource HeaderTextBlock}" Text="Pacific" />
+                            <ListView x:Name="PacificTeamsListView" Height="350" Width="300">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Style="{StaticResource DescriptionTextBlock}"
+                                                           Text="{Binding TeamName}" />
+                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
+                                                           Text="Click on Logo to get more info" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>
