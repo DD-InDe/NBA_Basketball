@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NBA_Basketball.Entities.Models;
 
 namespace NBA_Basketball.Models;
 

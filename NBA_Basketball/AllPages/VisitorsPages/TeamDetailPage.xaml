@@ -31,7 +31,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
                                                     ElementStyle="{StaticResource DataGridElement}" Header="No."
-                                                    Binding="{Binding ShirtNumber}"/>
+                                                    Binding="{Binding ShirtNumber}" />
                                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
                                                     ElementStyle="{StaticResource DataGridElement}" Header="Name"
                                                     Binding="{Binding Player.Name}" />
@@ -64,24 +64,25 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
                                                     ElementStyle="{StaticResource DataGridElement}" Header="Date"
-                                                    Binding="{Binding DateStart}">
+                                                    Binding="{Binding StartDate}">
                                 </DataGridTextColumn>
                                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
                                                     ElementStyle="{StaticResource DataGridElement}"
                                                     Header="Matchup Type"
-                                                    Binding="{Binding MatchupType.Name}">
+                                                    Binding="{Binding MatchupType}">
                                 </DataGridTextColumn>
-                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}" x:Name="OpponentColumn"
+                                <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
+                                                    x:Name="OpponentColumn"
                                                     ElementStyle="{StaticResource DataGridElement}" Header="Opponent"
                                                     Binding="{Binding Opponent}">
                                 </DataGridTextColumn>
                                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
                                                     ElementStyle="{StaticResource DataGridElement}" Header="Start time"
-                                                    Binding="{Binding TimeStart}">
+                                                    Binding="{Binding StartTime}">
                                 </DataGridTextColumn>
                                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
                                                     ElementStyle="{StaticResource DataGridElement}" Header="Result"
-                                                    Binding="{Binding TotalScore}">
+                                                    Binding="{Binding Result}">
                                 </DataGridTextColumn>
                                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
                                                     ElementStyle="{StaticResource DataGridElement}" Header="Location"
@@ -89,7 +90,7 @@
                                 </DataGridTextColumn>
                                 <DataGridTextColumn HeaderStyle="{StaticResource DataGridHeader}"
                                                     ElementStyle="{StaticResource DataGridElement}" Header="Status"
-                                                    Binding="{Binding StatusName}">
+                                                    Binding="{Binding Status}">
                                 </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
@@ -98,8 +99,96 @@
                 <!-- lineup -->
                 <TabItem>
                     <TabItem.Header>
-                        <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="Lineup"/>
+                        <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="Lineup" />
                     </TabItem.Header>
+                    <TabItem.Content>
+                        <Grid Width="950" Height="450">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Image Grid.ColumnSpan="5" Grid.RowSpan="3" Source="/Resources/lineup.jpg" Width="950"
+                                   Height="450" Stretch="Fill"/>
+                            <ScrollViewer Grid.Column="0" Grid.Row="1" Style="{StaticResource LineupScrollViewer}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="PF" Width="40"
+                                               HorizontalAlignment="Left" Background="LightGoldenrodYellow" Margin="0" />
+                                    <ListView x:Name="PFListView">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Style="{StaticResource MainTextBlock}" FontSize="12" Foreground="#6996c2"
+                                                           Text="{Binding Player.Name}" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </ScrollViewer>
+                            <ScrollViewer Grid.Column="1" Grid.Row="2" Style="{StaticResource LineupScrollViewer}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="SG" Width="40"
+                                               HorizontalAlignment="Left" Background="LightGoldenrodYellow" Margin="0" />
+                                    <ListView x:Name="SGListView">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Style="{StaticResource MainTextBlock}" FontSize="12" Foreground="#6996c2"
+                                                           Text="{Binding Player.Name}" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </ScrollViewer>
+                            <ScrollViewer Grid.Column="2" Grid.Row="1" Style="{StaticResource LineupScrollViewer}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="C" Width="40"
+                                               HorizontalAlignment="Left" Background="LightGoldenrodYellow" Margin="0" />
+                                    <ListView x:Name="CListView">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Style="{StaticResource MainTextBlock}" FontSize="12" Foreground="#6996c2"
+                                                           Text="{Binding Player.Name}" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </ScrollViewer>
+                            <ScrollViewer Grid.Column="3" Grid.Row="2" Style="{StaticResource LineupScrollViewer}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="PG" Width="40"
+                                               HorizontalAlignment="Left" Background="LightGoldenrodYellow" Margin="0" />
+                                    <ListView x:Name="PGListView">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Style="{StaticResource MainTextBlock}" FontSize="12" Foreground="#6996c2"
+                                                           Text="{Binding Player.Name}" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </ScrollViewer>
+                            <ScrollViewer Grid.Column="4" Grid.Row="1" Style="{StaticResource LineupScrollViewer}">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Text="SF" Width="40"
+                                               HorizontalAlignment="Left" Background="LightGoldenrodYellow" Margin="0" />
+                                    <ListView x:Name="SFListView">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Style="{StaticResource MainTextBlock}" FontSize="12" Foreground="#6996c2"
+                                                           Text="{Binding Player.Name}" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </TabItem.Content>
                 </TabItem>
             </TabControl>
         </StackPanel>

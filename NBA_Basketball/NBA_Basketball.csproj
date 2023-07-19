@@ -32,6 +32,8 @@
     <ItemGroup>
       <None Remove="Resources\logo.jpg" />
       <Resource Include="Resources\logo.jpg" />
+      <None Remove="Resources\lineup.jpg" />
+      <Resource Include="Resources\lineup.jpg" />
     </ItemGroup>
 
 </Project>

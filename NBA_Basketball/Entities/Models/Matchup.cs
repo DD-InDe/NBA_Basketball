@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using NBA_Basketball.Models;
 
-namespace NBA_Basketball.Models;
+namespace NBA_Basketball.Entities.Models;
 
-public partial class Matchup
+public class Matchup
 {
     public int MatchupId { get; set; }
 
@@ -19,11 +18,12 @@ public partial class Matchup
 
     public DateTime StartTime { get; set; }
 
+    public string? Opponent { get; set; } = null;
+
     public string DateStart => StartTime.ToString("MM/dd/yyyy");
 
     public string TimeStart => StartTime.ToString("hh:mm tt");
-
-
+    
     public string StatusName
     {
         get
@@ -39,11 +39,7 @@ public partial class Matchup
     public int TeamHomeScore { get; set; }
 
     public string? Location { get; set; }
-
-    public string Opponent { get; set; }
-    // public string? TotalScore { get; set; } = null!;
-
-
+    
     public int Status { get; set; }
 
     public string? CurrentQuarter { get; set; }
