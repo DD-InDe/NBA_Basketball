@@ -42,7 +42,20 @@ public partial class TeamsMainPage : Page
     {
         try
         {
-            NavigationService.Navigate(new TeamDetailPage(((Image)e.OriginalSource).DataContext as Team));
+            NavigationService.Navigate(new TeamDetailPage(((Image)e.OriginalSource).DataContext as Team, "Roster"));
+        }
+        catch (Exception exc)
+        {
+            MessageBox.Show(exc.Message);
+        }
+    }
+
+    private void Hyperlink_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        try
+        {
+            NavigationService.Navigate(new TeamDetailPage(((TextBlock)e.OriginalSource).DataContext as Team,
+                ((TextBlock)e.OriginalSource).Text));
         }
         catch (Exception exc)
         {

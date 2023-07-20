@@ -23,12 +23,19 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}"
+                                                   MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown" />
                                             <StackPanel Orientation="Vertical">
                                                 <TextBlock Style="{StaticResource DescriptionTextBlock}"
                                                            Text="{Binding TeamName}" />
-                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
-                                                           Text="Click on Logo to get more info" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Roster"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Matchup"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Lineup"/>
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
@@ -42,12 +49,19 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}"
+                                                   MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown" />
                                             <StackPanel Orientation="Vertical">
                                                 <TextBlock Style="{StaticResource DescriptionTextBlock}"
                                                            Text="{Binding TeamName}" />
-                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
-                                                           Text="Click on Logo to get more info" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Roster"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Matchup"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Lineup"/>
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
@@ -61,12 +75,19 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}"
+                                                   MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown" />
                                             <StackPanel Orientation="Vertical">
                                                 <TextBlock Style="{StaticResource DescriptionTextBlock}"
                                                            Text="{Binding TeamName}" />
-                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
-                                                           Text="Click on Logo to get more info" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Roster"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Matchup"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Lineup"/>
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
@@ -90,12 +111,19 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}"
+                                                   MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown" />
                                             <StackPanel Orientation="Vertical">
                                                 <TextBlock Style="{StaticResource DescriptionTextBlock}"
                                                            Text="{Binding TeamName}" />
-                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
-                                                           Text="Click on the logo to see more info" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Roster"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Matchup"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Lineup"/>
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
@@ -109,12 +137,19 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}"
+                                                   MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown" />
                                             <StackPanel Orientation="Vertical">
                                                 <TextBlock Style="{StaticResource DescriptionTextBlock}"
                                                            Text="{Binding TeamName}" />
-                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
-                                                           Text="Click on Logo to get more info" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Roster"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Matchup"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Lineup"/>
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
@@ -128,12 +163,19 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Image Width="60" Height="60" Source="{Binding LogoImage}" MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"/>
+                                            <Image Width="60" Height="60" Source="{Binding LogoImage}"
+                                                   MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown" />
                                             <StackPanel Orientation="Vertical">
                                                 <TextBlock Style="{StaticResource DescriptionTextBlock}"
                                                            Text="{Binding TeamName}" />
-                                                <TextBlock Style="{StaticResource MainTextBlock}" Foreground="#6996c2"
-                                                           Text="Click on Logo to get more info" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Roster"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Matchup"/>
+                                                    <TextBlock Style="{StaticResource MainTextBlock}"
+                                                               Foreground="#6996c2" MouseLeftButtonDown="Hyperlink_OnMouseLeftButtonDown" Text="Lineup"/>
+                                                </StackPanel>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>

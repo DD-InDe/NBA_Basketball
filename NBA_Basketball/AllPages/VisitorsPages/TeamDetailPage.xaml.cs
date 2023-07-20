@@ -13,7 +13,7 @@ namespace NBA_Basketball.AllPages.VisitorsPages;
 
 public partial class TeamDetailPage : Page
 {
-    public TeamDetailPage(Team team)
+    public TeamDetailPage(Team team, string tab)
     {
         InitializeComponent();
 
@@ -22,6 +22,19 @@ public partial class TeamDetailPage : Page
         RosterLoad(team);
         MatchupLoad(team);
         LineupLoad(team);
+
+        switch (tab)
+        {
+            case "Roster":
+                TabControl.SelectedIndex = 0;
+                break;
+            case "Matchup":
+                TabControl.SelectedIndex = 1;
+                break;
+            case "Lineup":
+                TabControl.SelectedIndex = 2;
+                break;
+        }
     }
 
     private void RosterLoad(Team team)

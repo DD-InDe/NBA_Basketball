@@ -20,7 +20,7 @@
                     </TextBlock.Text>
                 </TextBlock>
             </StackPanel>
-            <TabControl>
+            <TabControl x:Name="TabControl">
                 <!-- roster -->
                 <TabItem>
                     <TabItem.Header>
