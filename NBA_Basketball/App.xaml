@@ -45,7 +45,7 @@
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Margin" Value="10" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#383838" />
         </Style>
         <Style TargetType="TextBlock" x:Key="DataGridElement">
@@ -56,21 +56,29 @@
         </Style>
         <Style TargetType="DataGrid" x:Key="DefaultDataGrid">
             <Setter Property="CanUserAddRows" Value="False" />
-            <Setter Property="CanUserDeleteRows" Value="False"/>
-            <Setter Property="AutoGenerateColumns" Value="False"/>
-            <Setter Property="CanUserSortColumns" Value="False"/>
-            <Setter Property="Height" Value="300"/>
-            <Setter Property="MaxWidth" Value="1000"/>
-            <Setter Property="IsReadOnly" Value="True"/>
-            <Setter Property="BorderBrush" Value="#383838"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="CanUserDeleteRows" Value="False" />
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="CanUserSortColumns" Value="False" />
+            <Setter Property="Height" Value="300" />
+            <Setter Property="MaxWidth" Value="1000" />
+            <Setter Property="IsReadOnly" Value="True" />
+            <Setter Property="BorderBrush" Value="#383838" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
         </Style>
         <Style TargetType="ScrollViewer" x:Key="LineupScrollViewer">
             <Setter Property="Width" Value="170" />
-            <Setter Property="Height" Value="100"/>
-            <Setter Property="HorizontalScrollBarVisibility" Value="Hidden"/>
-            <Setter Property="VerticalScrollBarVisibility" Value="Hidden"/>
+            <Setter Property="Height" Value="100" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+        </Style>
+        <Style TargetType="TextBox" x:Key="SearchTextBox">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="23"/>
+            <Setter Property="Foreground" Value="#383838" />
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
     </Application.Resources>
 </Application>

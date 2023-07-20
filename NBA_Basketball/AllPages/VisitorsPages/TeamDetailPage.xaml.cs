@@ -16,12 +16,15 @@ public partial class TeamDetailPage : Page
     public TeamDetailPage(Team team, string tab)
     {
         InitializeComponent();
+        _team = team;
 
         TeamInfoStackPanel.DataContext = DB.entities.Teams.Include(c => c.Division).Include(c => c.Division.Conference)
             .FirstOrDefault(c => c.TeamId == team.TeamId);
-        RosterLoad(team);
+        SeasonComboBox.ItemsSource = DB.entities.Seasons.ToList();
+        SeasonComboBox.SelectedIndex = 0;
+
         MatchupLoad(team);
-        LineupLoad(team);
+        LineupLoad(team, DB.entities.Seasons.ToList().Last().SeasonId);
 
         switch (tab)
         {
@@ -37,13 +40,16 @@ public partial class TeamDetailPage : Page
         }
     }
 
-    private void RosterLoad(Team team)
+    private Team _team;
+    private List<MatchupPlus> matchupPlusList;
+
+    private void RosterLoad(Team team, int season)
     {
         try
         {
             RosterDataGrid.ItemsSource = DB.entities.PlayerInTeams.Include(c => c.Player)
                 .Include(c => c.Player.Position)
-                .Where(c => c.TeamId == team.TeamId).ToList();
+                .Where(c => c.TeamId == team.TeamId && c.SeasonId== season).ToList();
         }
         catch (Exception exc)
         {
@@ -58,7 +64,7 @@ public partial class TeamDetailPage : Page
             List<Matchup> matchups = DB.entities.Matchups.Include(c => c.MatchupType).Include(c => c.TeamAwayNavigation)
                 .Include(c => c.TeamHomeNavigation).Where(c => c.TeamAway == team.TeamId || c.TeamHome == team.TeamId)
                 .ToList();
-            List<MatchupPlus> matchupPlusList = new List<MatchupPlus>();
+            matchupPlusList = new List<MatchupPlus>();
             MatchupPlus matchupPlus;
             foreach (var item in matchups)
             {
@@ -90,7 +96,7 @@ public partial class TeamDetailPage : Page
         }
     }
 
-    private void LineupLoad(Team team)
+    private void LineupLoad(Team team, int season)
     {
         try
         {
@@ -102,16 +108,41 @@ public partial class TeamDetailPage : Page
             5	PointGuard  	PG 
              */
             List<PlayerInTeam> playersInTeam = DB.entities.PlayerInTeams.Include(c => c.Player)
-                .Where(c => c.TeamId == team.TeamId).ToList();
-            PFListView.ItemsSource = playersInTeam.Where(c => c.Player.PositionId == 2).ToList().DistinctBy(c=>c.Player).ToList();
-            SGListView.ItemsSource = playersInTeam.Where(c => c.Player.PositionId == 4).ToList().DistinctBy(c=>c.Player).ToList();
-            CListView.ItemsSource = playersInTeam.Where(c => c.Player.PositionId == 3).ToList().DistinctBy(c=>c.Player).ToList();
-            PGListView.ItemsSource = playersInTeam.Where(c => c.Player.PositionId == 5).ToList().DistinctBy(c=>c.Player).ToList();
-            SFListView.ItemsSource = playersInTeam.Where(c => c.Player.PositionId == 1).ToList().DistinctBy(c=>c.Player).ToList();
+                .Where(c => c.TeamId == team.TeamId && c.SeasonId == season).ToList();
+            PFListView.ItemsSource =
+                playersInTeam.Where(c => c.Player.PositionId == 2).ToList().OrderBy(c => c.StarterIndex);
+            SGListView.ItemsSource =
+                playersInTeam.Where(c => c.Player.PositionId == 4).ToList().OrderBy(c => c.StarterIndex);
+            CListView.ItemsSource =
+                playersInTeam.Where(c => c.Player.PositionId == 3).ToList().OrderBy(c => c.StarterIndex);
+            PGListView.ItemsSource =
+                playersInTeam.Where(c => c.Player.PositionId == 5).ToList().OrderBy(c => c.StarterIndex);
+            SFListView.ItemsSource =
+                playersInTeam.Where(c => c.Player.PositionId == 1).ToList().OrderBy(c => c.StarterIndex);
         }
         catch (Exception exc)
         {
             MessageBox.Show(exc.Message);
         }
     }
+
+    private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        try
+        {
+            MatchupDataGrid.ItemsSource = matchupPlusList.Where(c =>
+                c.StartDate.Contains(SearchTextBox.Text) ||
+                c.MatchupType.ToLower().Contains(SearchTextBox.Text.ToLower()) ||
+                c.Opponent.ToLower().Contains(SearchTextBox.Text.ToLower()) ||
+                c.StartTime.ToLower().Contains(SearchTextBox.Text.ToLower()) || c.Result.Contains(SearchTextBox.Text) ||
+                c.Location.ToLower().Contains(SearchTextBox.Text.ToLower()) ||
+                c.Status.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+        }
+        catch (Exception exc)
+        {
+            MessageBox.Show(exc.Message);
+        }
+    }
+
+    private void SeasonComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e) => RosterLoad(_team, Convert.ToInt32(((Season)SeasonComboBox.SelectedItem).SeasonId));
 }
