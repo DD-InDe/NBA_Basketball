@@ -1,0 +1,110 @@
+﻿<Page x:Class="NBA_Basketball.AllPages.VisitorsPages.PlayersMainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:NBA_Basketball.AllPages.VisitorsPages"
+      mc:Ignorable="d"
+      Title="Players Main" Height="auto" Width="auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- sort and search panel -->
+        <Grid Grid.Row="0" Background="#6996c2">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource AlphabetButton}" Content="ALL" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="A" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="B" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="C" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="D" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="E" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="F" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="G" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="H" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="I" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="J" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="K" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="L" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="M" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="N" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="O" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="P" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="Q" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="R" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="S" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="T" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="U" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="V" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="W" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="X" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="Y" Click="ButtonBase_OnClick" />
+                    <Button Style="{StaticResource AlphabetButton}" Content="Z" Click="ButtonBase_OnClick" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="White" Text="Season:" />
+                    <ComboBox x:Name="SeasonComboBox" DisplayMemberPath="Name" Style="{StaticResource DefaultComboBox}" />
+                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="White" Text="Team:" />
+                    <ComboBox x:Name="TeamComboBox" DisplayMemberPath="TeamName"
+                              Style="{StaticResource DefaultComboBox}" />
+                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="White" Text="Player name:" />
+                    <TextBox x:Name="SearchTextBox" Style="{StaticResource SearchTextBox}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <!-- datagrid panel -->
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <DataGrid x:Name="PlayerDataGrid" IsReadOnly="True" MaxWidth="800" Height="350">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="100" Height="80" Stretch="Fill" Source="{Binding}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="No." Binding="{Binding }">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Name" Binding="{Binding }">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Team" Binding="{Binding }">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Postition" Binding="{Binding }">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Weight" Binding="{Binding }">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Height" Binding="{Binding }">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Experience" Binding="{Binding }">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Country" Binding="{Binding }">
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <!-- controls panel -->
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="FisrtPageButton" Style="{StaticResource AlphabetButton}" Foreground="#6996c2" Content="I&lt;"/>
+                    <Button x:Name="NextPageButton" Style="{StaticResource AlphabetButton}" Foreground="#6996c2" Content="&lt;"/>
+                    <TextBlock x:Name="CurrentPageTextBlock" Style="{StaticResource MainTextBlock}" VerticalAlignment="Center"/>
+                    <TextBlock Style="{StaticResource MainTextBlock}" VerticalAlignment="Center" Text="of"/>
+                    <TextBlock x:Name="NumberOfPagesTextBlock" Style="{StaticResource MainTextBlock}" VerticalAlignment="Center"/>
+                    <Button x:Name="PreviousPageButton" Style="{StaticResource AlphabetButton}" Foreground="#6996c2" Content=">"/>
+                    <Button x:Name="LastPageButton" Style="{StaticResource AlphabetButton}" Foreground="#6996c2" Content=">I"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

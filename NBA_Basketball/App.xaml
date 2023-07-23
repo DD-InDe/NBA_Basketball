@@ -75,10 +75,26 @@
         <Style TargetType="TextBox" x:Key="SearchTextBox">
             <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Height" Value="23"/>
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="23" />
             <Setter Property="Foreground" Value="#383838" />
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button" x:Key="AlphabetButton">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+        </Style>
+        <Style TargetType="ComboBox" x:Key="DefaultComboBox">
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="Height" Value="auto"/>
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="#383838" />
         </Style>
     </Application.Resources>
 </Application>
