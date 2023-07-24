@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:local="clr-namespace:NBA_Basketball.AllPages.VisitorsPages"
       mc:Ignorable="d"
       Title="Players Main" Height="auto" Width="auto">
     <Grid>
@@ -46,10 +45,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="White" Text="Season:" />
-                    <ComboBox x:Name="SeasonComboBox" DisplayMemberPath="Name" Style="{StaticResource DefaultComboBox}" />
+                    <ComboBox x:Name="SeasonComboBox" DisplayMemberPath="Name" Style="{StaticResource DefaultComboBox}"
+                              SelectionChanged="SeasonComboBox_OnSelectionChanged" />
                     <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="White" Text="Team:" />
-                    <ComboBox x:Name="TeamComboBox" DisplayMemberPath="TeamName"
-                              Style="{StaticResource DefaultComboBox}" />
+                    <ComboBox x:Name="TeamComboBox" Style="{StaticResource DefaultComboBox}"
+                              SelectionChanged="TeamComboBox_OnSelectionChanged" />
                     <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="White" Text="Player name:" />
                     <TextBox x:Name="SearchTextBox" Style="{StaticResource SearchTextBox}" />
                 </StackPanel>
@@ -59,50 +59,69 @@
         <!-- datagrid panel -->
         <Grid Grid.Row="1">
             <StackPanel Orientation="Vertical">
-                <DataGrid x:Name="PlayerDataGrid" IsReadOnly="True" MaxWidth="800" Height="350">
+                <DataGrid x:Name="PlayerDataGrid" ColumnWidth="150" IsReadOnly="True" MaxHeight="550"
+                          AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn>
+                        <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeader}">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Width="100" Height="80" Stretch="Fill" Source="{Binding}" />
+                                    <Image Margin="5" Width="100" Height="90" Source="{Binding Player.PhotoImage}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeader}" Header="No." Binding="{Binding }">
+                        <DataGridTextColumn Width="50" ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="No."
+                                            Binding="{Binding ShirtNumber}">
                         </DataGridTextColumn>
                         <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Name" Binding="{Binding }">
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Name"
+                                            Binding="{Binding Player.Name}">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="80" ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Team"
+                                            Binding="{Binding Team.Abbr}">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="80" ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Position"
+                                            Binding="{Binding Player.Position.Abbr}">
                         </DataGridTextColumn>
                         <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Team" Binding="{Binding }">
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Weight"
+                                            Binding="{Binding Player.Weight}">
                         </DataGridTextColumn>
                         <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Postition" Binding="{Binding }">
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Height"
+                                            Binding="{Binding Player.Height}">
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="100" ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Experience"
+                                            Binding="{Binding Player.Experience}">
                         </DataGridTextColumn>
                         <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Weight" Binding="{Binding }">
-                        </DataGridTextColumn>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Height" Binding="{Binding }">
-                        </DataGridTextColumn>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Experience" Binding="{Binding }">
-                        </DataGridTextColumn>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Country" Binding="{Binding }">
+                                            HeaderStyle="{StaticResource DataGridHeader}" Header="Country"
+                                            Binding="{Binding Player.CountryCodeNavigation.CountryName}">
                         </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!-- controls panel -->
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="FisrtPageButton" Style="{StaticResource AlphabetButton}" Foreground="#6996c2" Content="I&lt;"/>
-                    <Button x:Name="NextPageButton" Style="{StaticResource AlphabetButton}" Foreground="#6996c2" Content="&lt;"/>
-                    <TextBlock x:Name="CurrentPageTextBlock" Style="{StaticResource MainTextBlock}" VerticalAlignment="Center"/>
-                    <TextBlock Style="{StaticResource MainTextBlock}" VerticalAlignment="Center" Text="of"/>
-                    <TextBlock x:Name="NumberOfPagesTextBlock" Style="{StaticResource MainTextBlock}" VerticalAlignment="Center"/>
-                    <Button x:Name="PreviousPageButton" Style="{StaticResource AlphabetButton}" Foreground="#6996c2" Content=">"/>
-                    <Button x:Name="LastPageButton" Style="{StaticResource AlphabetButton}" Foreground="#6996c2" Content=">I"/>
+                    <Button x:Name="FirstPageButton" Click="FirstPageButton_OnClick"
+                            Style="{StaticResource AlphabetButton}" Foreground="#6996c2"
+                            Content="I&lt;" />
+                    <Button x:Name="PreviousPageButton" Click="PreviousPageButton_OnClick"
+                            Style="{StaticResource AlphabetButton}" Foreground="#6996c2"
+                            Content="&lt;" />
+                    <TextBlock x:Name="CurrentPageTextBlock" Style="{StaticResource MainTextBlock}"
+                               VerticalAlignment="Center" />
+                    <TextBlock Style="{StaticResource MainTextBlock}" VerticalAlignment="Center" Text="of" />
+                    <TextBlock x:Name="NumberOfPagesTextBlock" Style="{StaticResource MainTextBlock}"
+                               VerticalAlignment="Center" />
+                    <Button x:Name="NextPageButton" Click="NextPageButton_OnClick"
+                            Style="{StaticResource AlphabetButton}" Foreground="#6996c2"
+                            Content=">" />
+                    <Button x:Name="LastPageButton" Click="LastPageButton_OnClick"
+                            Style="{StaticResource AlphabetButton}" Foreground="#6996c2"
+                            Content=">I" />
                 </StackPanel>
             </StackPanel>
         </Grid>
