@@ -51,7 +51,8 @@
                     <ComboBox x:Name="TeamComboBox" Style="{StaticResource DefaultComboBox}"
                               SelectionChanged="TeamComboBox_OnSelectionChanged" />
                     <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="White" Text="Player name:" />
-                    <TextBox x:Name="SearchTextBox" Style="{StaticResource SearchTextBox}" />
+                    <TextBox x:Name="SearchTextBox" TextChanged="SearchTextBox_OnTextChanged"
+                             Style="{StaticResource SearchTextBox}" />
                 </StackPanel>
             </StackPanel>
         </Grid>
@@ -111,8 +112,9 @@
                     <Button x:Name="PreviousPageButton" Click="PreviousPageButton_OnClick"
                             Style="{StaticResource AlphabetButton}" Foreground="#6996c2"
                             Content="&lt;" />
-                    <TextBlock x:Name="CurrentPageTextBlock" Style="{StaticResource MainTextBlock}"
-                               VerticalAlignment="Center" />
+                    <TextBox x:Name="CurrentPageTextBox" Width="auto" Style="{StaticResource SearchTextBox}"
+                             VerticalAlignment="Center" KeyUp="CurrentPageTextBox_OnKeyUp"
+                             PreviewTextInput="CurrentPageTextBox_OnPreviewTextInput" />
                     <TextBlock Style="{StaticResource MainTextBlock}" VerticalAlignment="Center" Text="of" />
                     <TextBlock x:Name="NumberOfPagesTextBlock" Style="{StaticResource MainTextBlock}"
                                VerticalAlignment="Center" />
@@ -122,6 +124,14 @@
                     <Button x:Name="LastPageButton" Click="LastPageButton_OnClick"
                             Style="{StaticResource AlphabetButton}" Foreground="#6996c2"
                             Content=">I" />
+                    <StackPanel VerticalAlignment="Center" Margin="25,0,0,0" Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource MainTextBlock}" Text="Total"/>
+                    <TextBlock x:Name="TotalRecordsTextBlock" Style="{StaticResource MainTextBlock}"/>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Text="records"/>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Text="|"/>
+                    <TextBlock x:Name="RecordsInOnePage" Style="{StaticResource MainTextBlock}" />
+                    <TextBlock Style="{StaticResource MainTextBlock}" Text="Records in one page"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </Grid>

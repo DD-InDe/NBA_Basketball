@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using Microsoft.EntityFrameworkCore;
 using NBA_Basketball.Entities;
@@ -19,22 +20,19 @@ public partial class PlayersMainPage : Page
 
         try
         {
-            SeasonComboBox.ItemsSource = DB.entities.Seasons.ToList();
+            playerInTeamsList = DB.entities.PlayerInTeams.Include(c => c.Player).Include(c => c.Team)
+                .Include(c => c.Player.CountryCodeNavigation).Include(c => c.Player.Position).ToList();
 
             List<string> teamList = new List<string>() { "all" };
             foreach (var item in DB.entities.Teams)
                 teamList.Add(item.TeamName);
+            SeasonComboBox.ItemsSource = DB.entities.Seasons.ToList();
             TeamComboBox.ItemsSource = teamList;
 
-            playerInTeamsList = DB.entities.PlayerInTeams.Include(c => c.Player).Include(c => c.Team)
-                .Include(c => c.Player.CountryCodeNavigation).Include(c => c.Player.Position).ToList();
-            PlayerDataGrid.ItemsSource =
-                playerInTeamsList.Where(c => c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId);
-
-            startIndex = 0;
-            currentPage = 1;
-            visiblePlayersList = playerInTeamsList;
-            PlayerDataGrid.ItemsSource = playerInTeamsList.GetRange(startIndex, 10).ToList();
+            ListSorting();
+            PlayerDataGrid.ItemsSource = listOfVisibleLists[currentPage];
+            CurrentPageTextBox.Text = Convert.ToString(currentPage + 1);
+            RecordsInOnePage.Text = listOfVisibleLists[currentPage].Count.ToString();
         }
         catch (Exception exc)
         {
@@ -42,108 +40,154 @@ public partial class PlayersMainPage : Page
         }
     }
 
+    private string check = "ALL";
+    private int pages;
     private int currentPage;
-    private int allPages;
-    private int startIndex;
     private List<PlayerInTeam> playerInTeamsList;
+    private List<List<PlayerInTeam>> listOfVisibleLists;
     private List<PlayerInTeam> visiblePlayersList;
+    private List<PlayerInTeam> tempList;
 
-
-    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    private void ListSorting()
     {
-        string check = ((Button)sender).Content.ToString();
-        startIndex = 0;
+        currentPage = 0;
+        listOfVisibleLists = new List<List<PlayerInTeam>>();
+
         if (check != "ALL" && TeamComboBox.SelectedIndex == 0)
-            visiblePlayersList = playerInTeamsList.Where(c =>
-                    c.Player.Name.StartsWith(check) && c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId)
-                .ToList();
-        if (check != "ALL" && TeamComboBox.SelectedIndex != 0)
-            visiblePlayersList = playerInTeamsList.Where(c =>
+            tempList = playerInTeamsList.Where(c =>
                 c.Player.Name.StartsWith(check) && c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
-                c.Team.Abbr == TeamComboBox.SelectedItem.ToString()).ToList();
+                c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+        if (check != "ALL" && TeamComboBox.SelectedIndex != 0)
+            tempList = playerInTeamsList.Where(c =>
+                c.Player.Name.StartsWith(check) && c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
+                c.Team.Abbr == TeamComboBox.SelectedItem.ToString() &&
+                c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
         if (check == "ALL" && TeamComboBox.SelectedIndex == 0)
-            visiblePlayersList = playerInTeamsList.Where(c => 
-                    c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId)
-                .ToList();
-        if (check == "ALL" && TeamComboBox.SelectedIndex != 0)
-            visiblePlayersList = playerInTeamsList.Where(c=>
+            tempList = playerInTeamsList.Where(c =>
                 c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
-                c.Team.TeamName == TeamComboBox.SelectedItem.ToString()).ToList();
-        PlayerDataGrid.ItemsSource = visiblePlayersList.GetRange(startIndex, 10);
+                c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+        if (check == "ALL" && TeamComboBox.SelectedIndex != 0)
+            tempList = playerInTeamsList.Where(c =>
+                c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
+                c.Team.TeamName == TeamComboBox.SelectedItem.ToString() &&
+                c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+
+        TotalRecordsTextBlock.Text = tempList.Count().ToString();
+        ListUpdate();
     }
 
-    private void FirstPageButton_OnClick(object sender, RoutedEventArgs e)
+    private void ListUpdate()
     {
-        startIndex = 0;
-        PlayerDataGrid.ItemsSource = visiblePlayersList.GetRange(startIndex, 10).ToList();
-    }
-
-    private void NextPageButton_OnClick(object sender, RoutedEventArgs e)
-    {
-        if (startIndex <= visiblePlayersList.Count - 10)
-        {
-            startIndex += 10;
-            if (startIndex>visiblePlayersList.Count-10)
-            {
-                PlayerDataGrid.ItemsSource = visiblePlayersList.GetRange(startIndex, visiblePlayersList.Count-10);
-            }
-            else
-            {
-                if (visiblePlayersList.Count >= 10)
-                    PlayerDataGrid.ItemsSource = visiblePlayersList.GetRange(startIndex, 10);
-                else
-                    PlayerDataGrid.ItemsSource = visiblePlayersList;
-            }
-          
-        }
-
+        if (tempList.Count % 10 == 0)
+            pages = tempList.Count / 10;
         else
-            visiblePlayersList = visiblePlayersList.ToList();
+            pages = tempList.Count / 10 + 1;
+        
+        for (int i = 0; i < pages; i++)
+        {
+            visiblePlayersList = new List<PlayerInTeam>();
+            for (int j = 0; j < 10; j++)
+            {
+                if (j + i * 10 <= tempList.Count - 1)
+                    visiblePlayersList.Add(tempList[j + i * 10]);
+                else
+                    break;
+            }
 
+            NumberOfPagesTextBlock.Text = pages.ToString();
+            listOfVisibleLists.Add(visiblePlayersList);
+        }
     }
 
     private void DataGridUpdate()
     {
-        if (startIndex>visiblePlayersList.Count-10 )
+        PlayerDataGrid.ItemsSource = listOfVisibleLists[currentPage];
+        CurrentPageTextBox.Text = Convert.ToString(currentPage + 1);
+        RecordsInOnePage.Text = listOfVisibleLists[currentPage].Count.ToString();
+    }
+    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    {
+        currentPage = 0;
+        check = ((Button)sender).Content.ToString();
+        ListSorting();
+        DataGridUpdate();
+    }
+
+    private void FirstPageButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        currentPage = 0;
+        ListUpdate();
+        DataGridUpdate();
+    }
+
+    private void NextPageButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        if (currentPage < pages - 1)
         {
-            PlayerDataGrid.ItemsSource = visiblePlayersList.GetRange(startIndex, visiblePlayersList.Count-10);
-        }
-        else
-        {
-            if (visiblePlayersList.Count >= 10)
-                PlayerDataGrid.ItemsSource = visiblePlayersList.GetRange(startIndex, 10);
-            else
-                PlayerDataGrid.ItemsSource = visiblePlayersList;
+            currentPage++;
+            ListUpdate();
+            DataGridUpdate();
         }
     }
 
     private void PreviousPageButton_OnClick(object sender, RoutedEventArgs e)
     {
-        if (startIndex >= 10)
+        if (currentPage > 0)
         {
-            startIndex -= 10;
-            // visiblePlayersList = visiblePlayersList.Skip(startIndex).ToList();
-
-            if (visiblePlayersList.Count >= 10)
-                PlayerDataGrid.ItemsSource = visiblePlayersList.GetRange(startIndex, 10);
-            else
-                PlayerDataGrid.ItemsSource = visiblePlayersList;
+            currentPage--;
+            ListUpdate();
+            DataGridUpdate();
         }
     }
 
     private void LastPageButton_OnClick(object sender, RoutedEventArgs e)
     {
-        startIndex = visiblePlayersList.Count - 10;
-        PlayerDataGrid.ItemsSource = visiblePlayersList.GetRange(startIndex, 10).ToList();
+        currentPage = pages - 1;
+        ListUpdate();
+        DataGridUpdate();
     }
 
     private void SeasonComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        
+        if (TeamComboBox.SelectedItem != null)
+        {
+            ListSorting();
+            DataGridUpdate();
+        }
     }
 
     private void TeamComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        
+        if (SeasonComboBox.SelectedItem != null)
+        {
+            ListSorting();
+            DataGridUpdate();
+        }
+    }
+
+    private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (TeamComboBox.SelectedItem != null && SeasonComboBox.SelectedItem != null)
+        {
+            ListSorting();
+            DataGridUpdate();
+        }
+    }
+
+    private void CurrentPageTextBox_OnPreviewTextInput(object sender, TextCompositionEventArgs e) => e.Handled = "0123456789".IndexOf(e.Text) < 0;
+
+    private void CurrentPageTextBox_OnKeyUp(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
+        {
+            if (Convert.ToInt32(CurrentPageTextBox.Text) < 1 || Convert.ToInt32(CurrentPageTextBox.Text) > pages)
+                CurrentPageTextBox.Text = Convert.ToString(currentPage + 1);
+            else
+            {
+                currentPage = Convert.ToInt32(CurrentPageTextBox.Text);
+                PlayerDataGrid.ItemsSource = listOfVisibleLists[currentPage];
+                RecordsInOnePage.Text = listOfVisibleLists[currentPage].Count.ToString();
+            }
+        }
     }
 }
