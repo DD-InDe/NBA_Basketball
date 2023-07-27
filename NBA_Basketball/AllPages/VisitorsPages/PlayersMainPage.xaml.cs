@@ -50,30 +50,37 @@ public partial class PlayersMainPage : Page
 
     private void ListSorting()
     {
-        currentPage = 0;
-        listOfVisibleLists = new List<List<PlayerInTeam>>();
+        try
+        {
+            currentPage = 0;
+            listOfVisibleLists = new List<List<PlayerInTeam>>();
 
-        if (check != "ALL" && TeamComboBox.SelectedIndex == 0)
-            tempList = playerInTeamsList.Where(c =>
-                c.Player.Name.StartsWith(check) && c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
-                c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
-        if (check != "ALL" && TeamComboBox.SelectedIndex != 0)
-            tempList = playerInTeamsList.Where(c =>
-                c.Player.Name.StartsWith(check) && c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
-                c.Team.Abbr == TeamComboBox.SelectedItem.ToString() &&
-                c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
-        if (check == "ALL" && TeamComboBox.SelectedIndex == 0)
-            tempList = playerInTeamsList.Where(c =>
-                c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
-                c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
-        if (check == "ALL" && TeamComboBox.SelectedIndex != 0)
-            tempList = playerInTeamsList.Where(c =>
-                c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
-                c.Team.TeamName == TeamComboBox.SelectedItem.ToString() &&
-                c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+            if (check != "ALL" && TeamComboBox.SelectedIndex == 0)
+                tempList = playerInTeamsList.Where(c =>
+                    c.Player.Name.StartsWith(check) && c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
+                    c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+            if (check != "ALL" && TeamComboBox.SelectedIndex != 0)
+                tempList = playerInTeamsList.Where(c =>
+                    c.Player.Name.StartsWith(check) && c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
+                    c.Team.Abbr == TeamComboBox.SelectedItem.ToString() &&
+                    c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+            if (check == "ALL" && TeamComboBox.SelectedIndex == 0)
+                tempList = playerInTeamsList.Where(c =>
+                    c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
+                    c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+            if (check == "ALL" && TeamComboBox.SelectedIndex != 0)
+                tempList = playerInTeamsList.Where(c =>
+                    c.SeasonId == ((Season)SeasonComboBox.SelectedItem).SeasonId &&
+                    c.Team.TeamName == TeamComboBox.SelectedItem.ToString() &&
+                    c.Player.Name.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
 
-        TotalRecordsTextBlock.Text = tempList.Count().ToString();
-        ListUpdate();
+            TotalRecordsTextBlock.Text = tempList.Count().ToString();
+            ListUpdate();
+        }
+        catch (Exception exc)
+        {
+            MessageBox.Show(exc.Message);
+        }
     }
 
     private void ListUpdate()
@@ -101,9 +108,18 @@ public partial class PlayersMainPage : Page
 
     private void DataGridUpdate()
     {
+        if (listOfVisibleLists.Count != 0)
+        {
         PlayerDataGrid.ItemsSource = listOfVisibleLists[currentPage];
         CurrentPageTextBox.Text = Convert.ToString(currentPage + 1);
         RecordsInOnePage.Text = listOfVisibleLists[currentPage].Count.ToString();
+        }
+        else
+        {
+            PlayerDataGrid.ItemsSource = null;
+            CurrentPageTextBox.Text = Convert.ToString(currentPage + 1);
+            RecordsInOnePage.Text = "0";            
+        }
     }
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
@@ -189,5 +205,10 @@ public partial class PlayersMainPage : Page
                 RecordsInOnePage.Text = listOfVisibleLists[currentPage].Count.ToString();
             }
         }
+    }
+
+    private void UIElement_OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    {
+        NavigationService.Navigate(new PlayerDetailPage(((PlayerInTeam)((Image)sender).DataContext).PlayerId));
     }
 }

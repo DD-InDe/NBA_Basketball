@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\App.xaml
-6-1721497817
+7-2145674900
 
-291862882232
+31-86834862
 227-681956988
-AllPages\VisitorsPages\PlayersMainPage.xaml;AllPages\VisitorsPages\TeamDetailPage.xaml;AllPages\VisitorsPages\TeamsMainPage.xaml;AllPages\VisitorsPages\VisitorMenuPage.xaml;AllWindows\MainScreenWindow.xaml;AllWindows\MainWindow.xaml;
+AllPages\VisitorsPages\PlayerDetailPage.xaml;AllPages\VisitorsPages\PlayersMainPage.xaml;AllPages\VisitorsPages\TeamDetailPage.xaml;AllPages\VisitorsPages\TeamsMainPage.xaml;AllPages\VisitorsPages\VisitorMenuPage.xaml;AllWindows\MainScreenWindow.xaml;AllWindows\MainWindow.xaml;
 
 False
 

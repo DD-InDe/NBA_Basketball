@@ -66,7 +66,7 @@
                         <DataGridTemplateColumn HeaderStyle="{StaticResource DataGridHeader}">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Margin="5" Width="100" Height="90" Source="{Binding Player.PhotoImage}" />
+                                    <Image MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown" Margin="5" Width="100" Height="90" Source="{Binding Player.PhotoImage}" />
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
