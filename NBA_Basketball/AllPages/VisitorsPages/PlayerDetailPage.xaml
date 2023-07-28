@@ -3,15 +3,15 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d"
       Loaded="PlayerDetailPage_OnLoaded"
       Title="Player Detail" Height="auto" Width="auto">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-
         <!-- player info -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -19,15 +19,16 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Orientation="Horizontal">
-                <Image Width="100" Height="90" Source="{Binding Player.PhotoImage}"/>
+            <StackPanel Grid.Column="0" Margin="5,30,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Image Width="110" Height="100" Source="{Binding Player.PhotoImage}" />
                 <StackPanel Orientation="Vertical">
-                    <TextBlock HorizontalAlignment="Left" Margin="5" Style="{StaticResource DescriptionTextBlock}" Text="{Binding Player.Name}" />
+                    <TextBlock Margin="5" HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlock}"
+                               Text="{Binding Player.Name}" />
                     <Line X1="0" Y1="0" X2="350" Y2="0" StrokeThickness="1" Stroke="#383838" />
-                    <TextBlock Style="{StaticResource MainTextBlock}">
+                    <TextBlock HorizontalAlignment="Left" Style="{StaticResource DescriptionTextBlock}">
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0} | {1} | {2}">
-                                <Binding Path="ShirtNumber" />
+                            <MultiBinding StringFormat="{}{0}  |  {1}  |  {2}">
+                                <Binding Path="ShirtNumberText" />
                                 <Binding Path="Player.Height" />
                                 <Binding Path="Team.TeamName" />
                             </MultiBinding>
@@ -35,47 +36,78 @@
                     </TextBlock>
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Style="{StaticResource MainTextBlock}" Text="Born" />
-                            <TextBlock Style="{StaticResource MainTextBlock}" Text="College" />
+                            <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left"
+                                       Text="Born" />
+                            <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left"
+                                       Text="College" />
                         </StackPanel>
-                        <StackPanel Orientation="Vertical" Margin="15,0,15,0">
-                            <TextBlock Style="{StaticResource MainTextBlock}" FontWeight="Bold" Text="{Binding Player.ShortDateOfBirth}" />
-                            <TextBlock Style="{StaticResource MainTextBlock}" FontWeight="Bold" Text="{Binding Player.College}" />
+                        <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                            <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left"
+                                       FontWeight="Bold" Text="{Binding Player.ShortDateOfBirth}" />
+                            <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left"
+                                       FontWeight="Bold" Text="{Binding Player.College}" />
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Style="{StaticResource MainTextBlock}" Text="Experience" />
-                            <TextBlock Style="{StaticResource MainTextBlock}" Text="Salary" />
+                            <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left"
+                                       Text="Experience" />
+                            <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left"
+                                       Text="Salary" />
                         </StackPanel>
-                        <StackPanel Orientation="Vertical" Margin="15,0,15,0">
-                            <TextBlock Style="{StaticResource MainTextBlock}" FontWeight="Bold" Text="{Binding Player.Experience}" />
-                            <TextBlock Style="{StaticResource MainTextBlock}" FontWeight="Bold" Text="{Binding Salary}" />
+                        <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                            <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left"
+                                       FontWeight="Bold" Text="{Binding Player.ExperienceText}" />
+                            <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left"
+                                       FontWeight="Bold" Text="{Binding SalaryText}" />
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="20,0,0,0" Orientation="Vertical" VerticalAlignment="Center">
-                <TextBlock Style="{StaticResource MainTextBlock}" FontWeight="Medium">
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="{} {0} Season">
-                            <Binding Path="Season.Name" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-                <DataGrid x:Name="SeasonResultDataGrid" Style="{StaticResource DefaultDataGrid}" ColumnWidth="70" Height="auto">
+                <TextBlock x:Name="SeasonTextBlock" Style="{StaticResource DescriptionTextBlock}"
+                           HorizontalAlignment="Left" FontWeight="Bold" />
+                <DataGrid x:Name="SeasonResultDataGrid" Style="{StaticResource DefaultDataGrid}" ColumnWidth="70"
+                          Height="auto">
                     <DataGrid.Columns>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}" HeaderStyle="{StaticResource HeaderTextBlock}" Header="PPG" Binding=""/>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}" HeaderStyle="{StaticResource HeaderTextBlock}" Header="APG" Binding=""/>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}" HeaderStyle="{StaticResource HeaderTextBlock}" Header="RPG" Binding=""/>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="PPG"
+                                            Binding="{Binding PPG}" />
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="APG"
+                                            Binding="{Binding APG}" />
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="RPG"
+                                            Binding="{Binding RPG}" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <TextBlock Style="{StaticResource MainTextBlock}" FontWeight="Medium" Text="Career"/>
-                <DataGrid x:Name="CareerResultDataGrid" Style="{StaticResource DefaultDataGrid}" ColumnWidth="70" Height="auto">
+                <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left" FontWeight="Bold"
+                           Text="Career" />
+                <DataGrid x:Name="CareerResultDataGrid" Style="{StaticResource DefaultDataGrid}" ColumnWidth="70"
+                          Height="auto">
                     <DataGrid.Columns>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}" HeaderStyle="{StaticResource HeaderTextBlock}" Header="PPG" Binding=""/>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}" HeaderStyle="{StaticResource HeaderTextBlock}" Header="APG" Binding=""/>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}" HeaderStyle="{StaticResource HeaderTextBlock}" Header="RPG" Binding=""/>
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="PPG"
+                                            Binding="{Binding PPG}" />
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="APG"
+                                            Binding="{Binding APG}" />
+                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="RPG"
+                                            Binding="{Binding RPG}" />
                     </DataGrid.Columns>
                 </DataGrid>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource MainTextBlock}" Text="Date:"/>
+                    <DatePicker></DatePicker>
+                    <TextBlock Style="{StaticResource MainTextBlock}" Text="-"/>
+                    <DatePicker></DatePicker>
+                    <Button Background="Transparent" Width="60" HorizontalContentAlignment="Center" Content="Search"></Button>
+                </StackPanel>
+                <TextBlock></TextBlock>
+                <!-- <lvc: -->
             </StackPanel>
         </Grid>
     </Grid>

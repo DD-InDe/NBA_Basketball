@@ -33,6 +33,8 @@ public partial class Player
 
     public int Experience => 2017 - JoinYear.Year;
 
+    public string ExperienceText => Experience + " Years";
+
     public string ShortDateOfBirth => (((DateTime)DateOfBirth)).ToString("MM/dd/yyyy");
     
     public virtual Country CountryCodeNavigation { get; set; } = null!;

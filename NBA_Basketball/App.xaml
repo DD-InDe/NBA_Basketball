@@ -48,6 +48,14 @@
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#383838" />
         </Style>
+        <Style TargetType="DataGridColumnHeader" x:Key="DataGridHeaderOther">
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#383838" />
+        </Style>
         <Style TargetType="TextBlock" x:Key="DataGridElement">
             <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="FontSize" Value="14" />
