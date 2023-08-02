@@ -25,7 +25,7 @@
             <Setter Property="Foreground" Value="#383838" />
         </Style>
         <Style TargetType="Button" x:Key="MainButton">
-            <Setter Property="Background" Value="#6996c2" />
+            <Setter Property="Background" Value="#6995c2" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="FontFamily" Value="Arial" />
@@ -112,6 +112,17 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="SelectedIndex" Value="0" />
             <Setter Property="Foreground" Value="#383838" />
+        </Style>
+        <Style TargetType="Button" x:Key="PlayerDetailButton">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Foreground" Value="#383838" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Bold" />
         </Style>
     </Application.Resources>
 </Application>

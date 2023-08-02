@@ -14,7 +14,7 @@
         <!-- sort and search panel -->
         <Grid Grid.Row="0" Background="#6996c2">
             <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="AlphabetStackPanel" Orientation="Horizontal">
                     <Button Style="{StaticResource AlphabetButton}" Content="ALL" Click="ButtonBase_OnClick" />
                     <Button Style="{StaticResource AlphabetButton}" Content="A" Click="ButtonBase_OnClick" />
                     <Button Style="{StaticResource AlphabetButton}" Content="B" Click="ButtonBase_OnClick" />

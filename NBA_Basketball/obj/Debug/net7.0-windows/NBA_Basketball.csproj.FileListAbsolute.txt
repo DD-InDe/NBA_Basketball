@@ -74,3 +74,5 @@ C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\obj\Debug\net7.0-windo
 C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\obj\Debug\net7.0-windows\AllPages\VisitorsPages\PlayersMainPage.baml
 C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\obj\Debug\net7.0-windows\AllPages\VisitorsPages\PlayerDetailPage.baml
 C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\obj\Debug\net7.0-windows\AllPages\VisitorsPages\PlayerDetailPage.g.cs
+C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\bin\Debug\net7.0-windows\LiveCharts.dll
+C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\bin\Debug\net7.0-windows\LiveCharts.Wpf.dll

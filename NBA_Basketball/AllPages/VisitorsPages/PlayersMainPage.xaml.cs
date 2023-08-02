@@ -123,7 +123,10 @@ public partial class PlayersMainPage : Page
     }
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
+        foreach (var button in AlphabetStackPanel.Children)
+            ((Button)button).Background = Brushes.Transparent;
         currentPage = 0;
+        ((Button)sender).Background = Brushes.LightGray;
         check = ((Button)sender).Content.ToString();
         ListSorting();
         DataGridUpdate();

@@ -3,19 +3,20 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d"
       Loaded="PlayerDetailPage_OnLoaded"
-      Title="Player Detail" Height="auto" Width="auto">
+      Title="Player Detail" Height="auto" Width="900">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="200" />
         </Grid.RowDefinitions>
         <!-- player info -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -62,53 +63,73 @@
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
-            <StackPanel Grid.Column="1" Margin="20,0,0,0" Orientation="Vertical" VerticalAlignment="Center">
-                <TextBlock x:Name="SeasonTextBlock" Style="{StaticResource DescriptionTextBlock}"
-                           HorizontalAlignment="Left" FontWeight="Bold" />
-                <DataGrid x:Name="SeasonResultDataGrid" Style="{StaticResource DefaultDataGrid}" ColumnWidth="70"
-                          Height="auto">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="PPG"
-                                            Binding="{Binding PPG}" />
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="APG"
-                                            Binding="{Binding APG}" />
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="RPG"
-                                            Binding="{Binding RPG}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-                <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left" FontWeight="Bold"
-                           Text="Career" />
-                <DataGrid x:Name="CareerResultDataGrid" Style="{StaticResource DefaultDataGrid}" ColumnWidth="70"
-                          Height="auto">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="PPG"
-                                            Binding="{Binding PPG}" />
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="APG"
-                                            Binding="{Binding APG}" />
-                        <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
-                                            HeaderStyle="{StaticResource DataGridHeaderOther}" Header="RPG"
-                                            Binding="{Binding RPG}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
+            <Grid Grid.Column="1">
+                <StackPanel Margin="20,0,0,0" Orientation="Vertical" VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <TextBlock x:Name="SeasonTextBlock" Style="{StaticResource DescriptionTextBlock}"
+                               HorizontalAlignment="Left" FontWeight="Bold" />
+                    <DataGrid x:Name="SeasonResultDataGrid" Style="{StaticResource DefaultDataGrid}" Width="auto"
+                              ColumnWidth="70"
+                              Height="auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                                HeaderStyle="{StaticResource DataGridHeaderOther}" Header="PPG"
+                                                Binding="{Binding PPG}" />
+                            <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                                HeaderStyle="{StaticResource DataGridHeaderOther}" Header="APG"
+                                                Binding="{Binding APG}" />
+                            <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                                HeaderStyle="{StaticResource DataGridHeaderOther}" Header="RPG"
+                                                Binding="{Binding RPG}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock Style="{StaticResource DescriptionTextBlock}" HorizontalAlignment="Left"
+                               FontWeight="Bold"
+                               Text="Career" />
+                    <DataGrid x:Name="CareerResultDataGrid" Style="{StaticResource DefaultDataGrid}" Width="auto"
+                              ColumnWidth="70"
+                              Height="auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                                HeaderStyle="{StaticResource DataGridHeaderOther}" Header="PPG"
+                                                Binding="{Binding PPG}" />
+                            <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                                HeaderStyle="{StaticResource DataGridHeaderOther}" Header="APG"
+                                                Binding="{Binding APG}" />
+                            <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                                HeaderStyle="{StaticResource DataGridHeaderOther}" Header="RPG"
+                                                Binding="{Binding RPG}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource MainTextBlock}" Text="Date:"/>
-                    <DatePicker></DatePicker>
-                    <TextBlock Style="{StaticResource MainTextBlock}" Text="-"/>
-                    <DatePicker></DatePicker>
-                    <Button Background="Transparent" Width="60" HorizontalContentAlignment="Center" Content="Search"></Button>
+            <Border BorderThickness="0.1" BorderBrush="Black">
+
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <StackPanel x:Name="GraphButtonStackPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button x:Name="PointsButton" Click="GraphButton_OnClick"
+                                Style="{StaticResource PlayerDetailButton}" Content="POINTS" />
+                        <Button x:Name="ReboundsButton" Click="GraphButton_OnClick"
+                                Style="{StaticResource PlayerDetailButton}" Content="REBOUNDS" />
+                        <Button x:Name="AssistsButton" Click="GraphButton_OnClick"
+                                Style="{StaticResource PlayerDetailButton}" Content="ASSISTS" />
+                        <Button x:Name="StealsButton" Click="GraphButton_OnClick"
+                                Style="{StaticResource PlayerDetailButton}" Content="STEALS" />
+                        <Button x:Name="BlocksButton" Click="GraphButton_OnClick"
+                                Style="{StaticResource PlayerDetailButton}" Content="BLOCKS" />
+                    </StackPanel>
+                    <TextBlock x:Name="AverageTextBlock" Style="{StaticResource DescriptionTextBlock}" />
                 </StackPanel>
-                <TextBlock></TextBlock>
-                <!-- <lvc: -->
-            </StackPanel>
+            </Border>
         </Grid>
+        <TextBlock x:Name="DataTextBlock" Grid.Row="2" Foreground="LightGray" FontSize="50" VerticalAlignment="Center"
+                   HorizontalAlignment="Center" Text="No data" FontFamily="Arial" Visibility="Hidden" />
+        <wpf:CartesianChart Grid.Row="2" Name="CartesianChart">
+            <wpf:CartesianChart.AxisY>
+                <wpf:Axis MinValue="0" />
+            </wpf:CartesianChart.AxisY>
+        </wpf:CartesianChart>
     </Grid>
 </Page>
