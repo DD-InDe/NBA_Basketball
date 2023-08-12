@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "3HX+fo+0XZ/1NBcJ001HEiIK9FfZxjJYDlHPGXUj8mF1tNmHb3eFIGrUP+f5EYna4Ax4ttVYBML7q5yJ5ud6QQ==",
+  "dgSpecHash": "eSfj2CwWPJ77q6GTY+zQrisdJEcstItSLq4OY4zYFeyeGx2Mi+RdpAbVb83xdxl2fcULKViAZm81s91ijQ7E0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\deer\\RiderProjects\\NBA_Basketball\\NBA_Basketball\\NBA_Basketball.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\deer\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\deer\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\deer\\.nuget\\packages\\extended.wpf.toolkit\\4.5.0\\extended.wpf.toolkit.4.5.0.nupkg.sha512",
     "C:\\Users\\deer\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\deer\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
     "C:\\Users\\deer\\.nuget\\packages\\livecharts.wpf\\0.9.7\\livecharts.wpf.0.9.7.nupkg.sha512",

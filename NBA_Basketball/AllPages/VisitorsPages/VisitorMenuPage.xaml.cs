@@ -14,4 +14,6 @@ public partial class VisitorMenuPage : Page
     private void TeamsButton_OnClick(object sender, RoutedEventArgs e) => NavigationService.Navigate(new TeamsMainPage());
 
     private void PlayersButton_OnClick(object sender, RoutedEventArgs e) => NavigationService.Navigate(new PlayersMainPage());
+
+    private void MatchupsButton_OnClick(object sender, RoutedEventArgs e) => NavigationService.Navigate(new MatchupListPage());
 }

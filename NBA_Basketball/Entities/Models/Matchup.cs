@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Media;
 using NBA_Basketball.Models;
 
 namespace NBA_Basketball.Entities.Models;
@@ -23,7 +24,22 @@ public class Matchup
     public string DateStart => StartTime.ToString("MM/dd/yyyy");
 
     public string TimeStart => StartTime.ToString("hh:mm tt");
-    
+
+    public string DateTimeStart => StartTime.ToString("MM/dd") + " " + StartTime.ToString("HH:mm");
+
+    public string MatchInfo
+    {
+        get
+        {
+            if (StatusName == "Finished") return MatchResult;
+            else
+            return StartTime.ToString("HH:mm") + " Start";
+        }
+        
+    } 
+
+    public string MatchResult => TeamAwayScore + "-" + TeamHomeScore;
+
     public string StatusName
     {
         get
@@ -34,12 +50,24 @@ public class Matchup
         }
     }
 
+    public SolidColorBrush ColorBrush
+    {
+        get
+        {
+            SolidColorBrush brush = new SolidColorBrush();
+            if (Status == -1) brush.Color = Colors.DodgerBlue;
+            if (Status == 0) brush.Color = Colors.Red;
+            if (Status == 1) brush.Color = Colors.DarkGray;
+            return brush;
+        }
+    }
+
     public int TeamAwayScore { get; set; }
 
     public int TeamHomeScore { get; set; }
 
     public string? Location { get; set; }
-    
+
     public int Status { get; set; }
 
     public string? CurrentQuarter { get; set; }
@@ -57,5 +85,4 @@ public class Matchup
     public virtual Team TeamAwayNavigation { get; set; } = null!;
 
     public virtual Team TeamHomeNavigation { get; set; } = null!;
-
 }

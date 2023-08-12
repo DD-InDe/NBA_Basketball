@@ -104,7 +104,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1"> 
             <Border BorderThickness="0.1" BorderBrush="Black">
 
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">

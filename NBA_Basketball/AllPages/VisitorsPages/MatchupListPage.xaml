@@ -1,0 +1,107 @@
+﻿<Page x:Class="NBA_Basketball.AllPages.VisitorsPages.MatchupListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:NBA_Basketball.AllPages.VisitorsPages"
+      mc:Ignorable="d"
+      Title="Matchup List" Height="auto" Width="auto" MinHeight="250" MinWidth="500">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10">
+                <Button x:Name="BackButton" Style="{StaticResource AlphabetButton}" BorderThickness="0.5"
+                        Click="BackButton_OnClick" VerticalAlignment="Top"
+                        Content="&lt;" Foreground="{StaticResource GrayBrush}" />
+                <DatePicker x:Name="MatchDatePicker" VerticalAlignment="Top" Margin="5"
+                            SelectedDateChanged="MatchDatePicker_OnSelectedDateChanged" />
+                <Button x:Name="NextButton" Style="{StaticResource AlphabetButton}" BorderThickness="0.5"
+                        Click="NextButton_OnClick" VerticalAlignment="Top"
+                        Content=">" Foreground="{StaticResource GrayBrush}" />
+                <StackPanel x:Name="LastMatchStackPanel" Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center" Margin="0,40,0,0">
+                    <Image Width="80" Height="60" Source="{Binding TeamAwayNavigation.LogoImage}"
+                           VerticalAlignment="Top" Stretch="Fill" />
+                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="{StaticResource BlueBrush}"
+                               VerticalAlignment="Center" Text="{Binding TeamAwayNavigation.TeamName}" />
+                    <StackPanel Orientation="Vertical" Margin="20,0,20,0">
+                        <TextBlock HorizontalAlignment="Center" FontSize="28" Text="VS"
+                                   Foreground="{StaticResource GrayBrush}" />
+                        <TextBlock HorizontalAlignment="Center" Style="{StaticResource DescriptionTextBlock}"
+                                   Text="{Binding MatchInfo}" />
+                    </StackPanel>
+                    <Image Width="80" Height="60" Source="{Binding TeamHomeNavigation.LogoImage}" Stretch="Fill"
+                           VerticalAlignment="Top" />
+                    <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="{StaticResource BlueBrush}"
+                               VerticalAlignment="Center" Text="{Binding TeamHomeNavigation.TeamName}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <TextBlock x:Name="DataTextBlock" Grid.RowSpan="2" Foreground="LightGray" FontSize="50" VerticalAlignment="Center"
+                   HorizontalAlignment="Center" Text="No matches" FontFamily="Arial" Visibility="Hidden" />
+        <DataGrid x:Name="MatchesDataGrid" Grid.Row="1" Style="{StaticResource DefaultDataGrid}"
+                  HeadersVisibility="None" EnableRowVirtualization="True" MinColumnWidth="100"
+                  GridLinesVisibility="Horizontal">
+            <DataGrid.Columns>
+                <DataGridTextColumn Foreground="White" ElementStyle="{StaticResource DataGridElement}"
+                                    Binding="{Binding StatusName}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="{Binding ColorBrush}" />
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}"
+                                    Binding="{Binding DateTimeStart}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="50" Height="40" Stretch="Fill"
+                                       Source="{Binding TeamAwayNavigation.LogoImage}" />
+                                <TextBlock VerticalAlignment="Center" Style="{StaticResource MainTextBlock}"
+                                           Foreground="{StaticResource BlueBrush}"
+                                           Text="{Binding TeamAwayNavigation.TeamName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}" Binding="{Binding MatchResult}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="50" Height="40" Stretch="Fill"
+                                       Source="{Binding TeamHomeNavigation.LogoImage}" />
+                                <TextBlock VerticalAlignment="Center" Style="{StaticResource MainTextBlock}"
+                                           Foreground="{StaticResource BlueBrush}"
+                                           Text="{Binding TeamHomeNavigation.TeamName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}" Binding="{Binding Location}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="ViewButton" Width="70" Height="27" Background="Transparent"
+                                    HorizontalContentAlignment="Center">
+                                <Button.Content>
+                                    <TextBlock Text="View" Style="{StaticResource MainTextBlock}"
+                                               TextAlignment="Center" />
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

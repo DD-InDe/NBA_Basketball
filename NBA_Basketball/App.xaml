@@ -3,6 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="AllWindows/MainScreenWindow.xaml">
     <Application.Resources>
+        <SolidColorBrush x:Key="GrayBrush" Color="#383838"/>
+        <SolidColorBrush x:Key="BlueBrush" Color="#6995c2"/>
+        
+        <Style TargetType="{x:Type DatePickerTextBox}">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <TextBox x:Name="PART_TextBox" Foreground="{StaticResource GrayBrush}"
+                                 Text="{Binding Path=SelectedDate, StringFormat='dd/MM/yyyy', 
+     RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style TargetType="TextBlock" x:Key="HeaderTextBlock">
             <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="FontSize" Value="20" />
