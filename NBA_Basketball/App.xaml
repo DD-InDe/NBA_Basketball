@@ -138,5 +138,21 @@
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
+        <Style TargetType="ProgressBar" x:Key="DefaultProgressBar">
+            <Setter Property="Minimum" Value="0"/>
+            <Setter Property="Maximum" Value="100"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Foreground" Value="{StaticResource BlueBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="DimGray"/>
+            <Setter Property="BorderThickness" Value="0.3"/>
+        </Style>
+        <Style TargetType="Image" x:Key="ImageLoad">
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="180"/>
+            <Setter Property="Stretch" Value="Fill"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
     </Application.Resources>
 </Application>

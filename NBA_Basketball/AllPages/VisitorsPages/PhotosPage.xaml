@@ -1,0 +1,60 @@
+﻿<Page x:Class="NBA_Basketball.AllPages.VisitorsPages.PhotosPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      Title="Photos" Height="auto" Width="auto">
+
+    <Page.Resources>
+        <DataTemplate x:Key="ImageTemplate">
+            <Image Style="{StaticResource ImageLoad}" Source="{Binding Img}">
+                <Image.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Download" Click="MenuItem_OnClick">
+                            <MenuItem.Icon>
+                                <Image Width="20" Height="20" Source="/Resources/download.png" Stretch="Fill"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </Image.ContextMenu>
+            </Image>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Style="{StaticResource DescriptionTextBlock}"
+                   Text="When you like a photo, you can right-click a photo and choose the download menu item in the context menu to download" />
+
+        <ListBox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ImageListBox" ItemTemplate="{StaticResource ImageTemplate}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="4"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock x:Name="PageInfoTextBlock" VerticalAlignment="Center" Style="{StaticResource MainTextBlock}" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="FirstPageButton" Click="FirstPageButton_OnClick" Style="{StaticResource AlphabetButton}" Foreground="{StaticResource BlueBrush}" Content="I&lt;" />
+                <Button x:Name="PreviousPageButton" Click="PreviousPageButton_OnClick" Style="{StaticResource AlphabetButton}" Foreground="{StaticResource BlueBrush}" Content="&lt;" />
+                <TextBox x:Name="CurrentPageTextBox" Width="auto" Style="{StaticResource SearchTextBox}"
+                         VerticalAlignment="Center" KeyUp="CurrentPageTextBox_OnKeyUp"
+                         PreviewTextInput="CurrentPageTextBox_OnPreviewTextInput" />
+                <Button x:Name="NextPageButton" Click="NextPageButton_OnClick" Style="{StaticResource AlphabetButton}" Foreground="{StaticResource BlueBrush}" Content=">" />
+                <Button x:Name="LastPageButton" Click="LastPageButton_OnClick" Style="{StaticResource AlphabetButton}" Foreground="{StaticResource BlueBrush}" Content=">I" />
+                <Button x:Name="DownloadAll" Click="DownloadAll_OnClick" Style="{StaticResource ControlButton}"
+                        Content="Download photos in current page" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

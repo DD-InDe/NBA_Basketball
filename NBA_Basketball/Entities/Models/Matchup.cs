@@ -33,10 +33,9 @@ public class Matchup
         {
             if (StatusName == "Finished") return MatchResult;
             else
-            return StartTime.ToString("HH:mm") + " Start";
+                return StartTime.ToString("HH:mm") + " Start";
         }
-        
-    } 
+    }
 
     public string MatchResult => TeamAwayScore + "-" + TeamHomeScore;
 
@@ -54,11 +53,9 @@ public class Matchup
     {
         get
         {
-            SolidColorBrush brush = new SolidColorBrush();
-            if (Status == -1) brush.Color = Colors.DodgerBlue;
-            if (Status == 0) brush.Color = Colors.Red;
-            if (Status == 1) brush.Color = Colors.DarkGray;
-            return brush;
+            if (Status == -1) return Brushes.DodgerBlue;
+            if (Status == 0) return Brushes.Red;
+            return Brushes.DarkGray;
         }
     }
 

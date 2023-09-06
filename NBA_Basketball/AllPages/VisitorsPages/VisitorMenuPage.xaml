@@ -14,7 +14,7 @@
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <Button x:Name="PlayersButton" Click="PlayersButton_OnClick" Style="{StaticResource MainButton}" Width="150" Margin="30,0,0,30" Content="Players"/>
-                <Button x:Name="PhotosButton" Style="{StaticResource MainButton}" Width="150" Margin="30,30,0,0" Content="Photos"/>
+                <Button x:Name="PhotosButton" Click="PhotosButton_OnClick" Style="{StaticResource MainButton}" Width="150" Margin="30,30,0,0" Content="Photos"/>
             </StackPanel>
         </StackPanel>
     </Grid>

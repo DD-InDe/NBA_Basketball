@@ -95,3 +95,7 @@ C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\bin\Debug\net7.0-windo
 C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\bin\Debug\net7.0-windows\ru\Xceed.Wpf.AvalonDock.NET5.resources.dll
 C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\bin\Debug\net7.0-windows\sv\Xceed.Wpf.AvalonDock.NET5.resources.dll
 C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\bin\Debug\net7.0-windows\zh-Hans\Xceed.Wpf.AvalonDock.NET5.resources.dll
+C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\obj\Debug\net7.0-windows\AllPages\VisitorsPages\MatchupDetailPage.baml
+C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\obj\Debug\net7.0-windows\AllPages\VisitorsPages\MatchupDetailPage.g.cs
+C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\obj\Debug\net7.0-windows\AllPages\VisitorsPages\PhotosPage.g.cs
+C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\obj\Debug\net7.0-windows\AllPages\VisitorsPages\PhotosPage.baml

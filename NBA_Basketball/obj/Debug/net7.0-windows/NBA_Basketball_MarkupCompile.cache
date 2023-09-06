@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\App.xaml
-81742713316
+10-1415990194
 
-321341273147
+351783389092
 234-1636116339
-AllPages\VisitorsPages\MatchupListPage.xaml;AllPages\VisitorsPages\PlayerDetailPage.xaml;AllPages\VisitorsPages\PlayersMainPage.xaml;AllPages\VisitorsPages\TeamDetailPage.xaml;AllPages\VisitorsPages\TeamsMainPage.xaml;AllPages\VisitorsPages\VisitorMenuPage.xaml;AllWindows\MainScreenWindow.xaml;AllWindows\MainWindow.xaml;
+AllPages\VisitorsPages\MatchupDetailPage.xaml;AllPages\VisitorsPages\MatchupListPage.xaml;AllPages\VisitorsPages\PhotosPage.xaml;AllPages\VisitorsPages\PlayerDetailPage.xaml;AllPages\VisitorsPages\PlayersMainPage.xaml;AllPages\VisitorsPages\TeamDetailPage.xaml;AllPages\VisitorsPages\TeamsMainPage.xaml;AllPages\VisitorsPages\VisitorMenuPage.xaml;AllWindows\MainScreenWindow.xaml;AllWindows\MainWindow.xaml;
 
-False
+True
 

@@ -45,7 +45,7 @@ public partial class MatchupListPage : Page
         }
         catch (Exception exception)
         {
-            MessageBox.Show(exception.Message); 
+            MessageBox.Show(exception.Message);
         }
     }
 
@@ -89,7 +89,7 @@ public partial class MatchupListPage : Page
         LastMatchStackPanel.Visibility = Visibility.Visible;
         DataTextBlock.Visibility = Visibility.Hidden;
         matchupsListView = matchupsListView.OrderBy(c => c.TimeStart).ToList();
-        
+
         MatchesDataGrid.ItemsSource = matchupsListView;
 
         List<Matchup> tempList = matchupsListView.Where(c => c.Status == 0).ToList(); // running
@@ -106,5 +106,10 @@ public partial class MatchupListPage : Page
                 LastMatchStackPanel.DataContext = tempList.Last();
             }
         }
+    }
+
+    private void ViewButton_OnClick(object sender, RoutedEventArgs e)
+    {
+        NavigationService.Navigate(new MatchupDetailPage(((Matchup)((Button)sender).DataContext).MatchupId));
     }
 }

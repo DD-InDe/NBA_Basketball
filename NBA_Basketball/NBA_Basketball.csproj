@@ -36,6 +36,10 @@
       <Resource Include="Resources\logo.jpg" />
       <None Remove="Resources\lineup.jpg" />
       <Resource Include="Resources\lineup.jpg" />
+      <None Remove="Resources\court.png" />
+      <Resource Include="Resources\court.png" />
+      <None Remove="Resources\download.png" />
+      <Resource Include="Resources\download.png" />
     </ItemGroup>
 
 </Project>

@@ -14,7 +14,12 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10">
                 <Button x:Name="BackButton" Style="{StaticResource AlphabetButton}" BorderThickness="0.5"
                         Click="BackButton_OnClick" VerticalAlignment="Top"
                         Content="&lt;" Foreground="{StaticResource GrayBrush}" />
@@ -23,7 +28,8 @@
                 <Button x:Name="NextButton" Style="{StaticResource AlphabetButton}" BorderThickness="0.5"
                         Click="NextButton_OnClick" VerticalAlignment="Top"
                         Content=">" Foreground="{StaticResource GrayBrush}" />
-                <StackPanel x:Name="LastMatchStackPanel" Orientation="Horizontal"
+                </StackPanel>
+                <StackPanel Grid.ColumnSpan="2" x:Name="LastMatchStackPanel" Orientation="Horizontal"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center" Margin="0,40,0,0">
                     <Image Width="80" Height="60" Source="{Binding TeamAwayNavigation.LogoImage}"
@@ -41,13 +47,12 @@
                     <TextBlock Style="{StaticResource DescriptionTextBlock}" Foreground="{StaticResource BlueBrush}"
                                VerticalAlignment="Center" Text="{Binding TeamHomeNavigation.TeamName}" />
                 </StackPanel>
-            </StackPanel>
         </Grid>
 
         <TextBlock x:Name="DataTextBlock" Grid.RowSpan="2" Foreground="LightGray" FontSize="50" VerticalAlignment="Center"
                    HorizontalAlignment="Center" Text="No matches" FontFamily="Arial" Visibility="Hidden" />
         <DataGrid x:Name="MatchesDataGrid" Grid.Row="1" Style="{StaticResource DefaultDataGrid}"
-                  HeadersVisibility="None" EnableRowVirtualization="True" MinColumnWidth="100"
+                  HeadersVisibility="None" MinColumnWidth="100"
                   GridLinesVisibility="Horizontal">
             <DataGrid.Columns>
                 <DataGridTextColumn Foreground="White" ElementStyle="{StaticResource DataGridElement}"
@@ -87,12 +92,12 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn ElementStyle="{StaticResource DataGridElement}" Binding="{Binding Location}" />
+                <DataGridTextColumn Width="*" ElementStyle="{StaticResource DataGridElement}" Binding="{Binding Location}" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="ViewButton" Width="70" Height="27" Background="Transparent"
-                                    HorizontalContentAlignment="Center">
+                                    HorizontalContentAlignment="Center" Click="ViewButton_OnClick">
                                 <Button.Content>
                                     <TextBlock Text="View" Style="{StaticResource MainTextBlock}"
                                                TextAlignment="Center" />

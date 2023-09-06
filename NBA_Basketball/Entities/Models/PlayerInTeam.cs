@@ -17,6 +17,8 @@ public partial class PlayerInTeam
 
     public string ShirtNumberText => "#" + ShirtNumber;
 
+    public string PlayerNumber => Player.Name + $"({ShirtNumberText})";
+
     public decimal Salary { get; set; }
     
     public string SalaryText => "$" + Math.Round(Salary,0);

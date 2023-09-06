@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using NBA_Basketball.Entities;
 using NBA_Basketball.Entities.Models;
 
 namespace NBA_Basketball.Models;
@@ -17,7 +19,7 @@ public partial class MatchupLog
     public int TeamId { get; set; }
 
     public int PlayerId { get; set; }
-
+    
     public int ActionTypeId { get; set; }
 
     public string? Remark { get; set; }
@@ -29,4 +31,6 @@ public partial class MatchupLog
     public virtual Player Player { get; set; } = null!;
 
     public virtual Team Team { get; set; } = null!;
+
+    public string PlayerNumber => Remark.Split(")")[0] + ")";
 }
