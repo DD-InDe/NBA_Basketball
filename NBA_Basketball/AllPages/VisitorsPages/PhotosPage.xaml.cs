@@ -21,11 +21,14 @@ public partial class PhotosPage : Page
         InitializeComponent();
 
         _pictures = DB.entities.Pictures.ToList();
+        _pictures = _pictures.OrderByDescending(c => c.CreateTime).ToList();
         currentPage = 1;
         LoadPhotos();
         ShowPhotos();
     }
 
+    private string message;
+    private string path;
     private List<List<Picture>> pagesPictures;
     private List<Picture> visiblePictures;
     private List<Picture> _pictures;
@@ -109,53 +112,44 @@ public partial class PhotosPage : Page
     {
         try
         {
-            string dirName = "LoadedImages";
-            if (!Directory.Exists(dirName))
-                Directory.CreateDirectory(dirName);
-            DirectoryInfo directoryInfo = new DirectoryInfo(dirName);
+            if (!Directory.Exists("Photos"))
+                Directory.CreateDirectory("Photos");
 
-            SaveFileDialog save = new SaveFileDialog
-            {
-                Filter = "JPG Files (*.jpg)|*.jpg"
-            };
-            if (save.ShowDialog() == true)
-            {
-                JpegBitmapEncoder jpegBitmapEncoder = new JpegBitmapEncoder();
-                jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)new ImageSourceConverter().ConvertFrom(picture.Img)));
-                using (FileStream fileStream = new FileStream(save.FileName, FileMode.Create))
-                    jpegBitmapEncoder.Save(fileStream);
-            }
+            DirectoryInfo directoryInfo = new DirectoryInfo("Photos");
+            path = directoryInfo.FullName + @"\";
+
+            JpegBitmapEncoder jpegBitmapEncoder = new JpegBitmapEncoder();
+            jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)new ImageSourceConverter().ConvertFrom(picture.Img)));
+            using (FileStream fileStream = new FileStream(path + picture.PicturesId + ".jpg", FileMode.Create))
+                jpegBitmapEncoder.Save(fileStream);
         }
         catch (Exception exception)
         {
             MessageBox.Show(exception.Message);
         }
+    }
+
+    private void MessageShow()
+    {
+        var result = MessageBox.Show(message + path + "\n Go to folder?", "Successfully", MessageBoxButton.YesNo,
+            MessageBoxImage.Asterisk);
+        if (result == MessageBoxResult.Yes)
+            Process.Start("explorer.exe", path);
     }
 
     private void DownloadAll_OnClick(object sender, RoutedEventArgs e)
     {
-        try
-        {
-            SaveFileDialog save = new SaveFileDialog
-            {
-                Filter = "JPG Files (*.jpg)|*.jpg"
-            };
-            if (save.ShowDialog() == true)
-            {
-                foreach (var picture in pagesPictures[currentPage - 1])
-                {
-                    JpegBitmapEncoder jpegBitmapEncoder = new JpegBitmapEncoder();
-                    jpegBitmapEncoder.Frames.Add(BitmapFrame.Create((BitmapSource)new ImageSourceConverter().ConvertFrom(picture.Img)));
-                    using (FileStream fileStream = new FileStream(save.FileName, FileMode.Create))
-                        jpegBitmapEncoder.Save(fileStream);
-                }
-            }
-        }
-        catch (Exception exception)
-        {
-            MessageBox.Show(exception.Message);
-        }
+        message = "Images saved in ";
+
+        foreach (var picture in pagesPictures[currentPage - 1])
+            SaveFiles(picture);
+        MessageShow();
     }
 
-    private void MenuItem_OnClick(object sender, RoutedEventArgs e) => SaveFiles((Picture)((MenuItem)sender).DataContext);
+    private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+    {
+        message = "Image saved in ";
+        SaveFiles((Picture)((MenuItem)sender).DataContext);
+        MessageShow();
+    }
 }
