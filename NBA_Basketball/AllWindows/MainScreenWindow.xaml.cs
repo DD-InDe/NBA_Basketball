@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media.Imaging;
+using NBA_Basketball.AllPages.AdminPages;
+using NBA_Basketball.AllPages.VisitorsPages;
 using NBA_Basketball.AllWindowsWindow;
 using NBA_Basketball.Entities;
 using NBA_Basketball.Models;
@@ -24,7 +26,7 @@ public partial class MainScreenWindow : Window
             ImageOne.Source = allImages[0];
             ImageTwo.Source = allImages[1];
             ImageThree.Source = allImages[2];
-            AppMain appMain = new AppMain();
+            appMain = new AppMain();
             CurrentSeasonTextBlock.Text = appMain.SeasonShow();
         }
         catch (IOException exc)
@@ -32,7 +34,8 @@ public partial class MainScreenWindow : Window
             MessageBox.Show(exc.Message);
         }
     }
-
+    
+    private AppMain appMain;
     private List<BitmapImage> allImages;
     private int currentPosition;
 
@@ -126,11 +129,16 @@ public partial class MainScreenWindow : Window
     private void VisitorButton_OnClick(object sender, RoutedEventArgs e)
     {
         MainWindow mainWindow = new MainWindow();
+        mainWindow.MainFrame.NavigationService.Navigate(new VisitorMenuPage());
         mainWindow.Show();
         Close();
     }
 
     private void AdminButton_OnClick(object sender, RoutedEventArgs e)
     {
-    }
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.MainFrame.NavigationService.Navigate(new AdminLoginPage());
+        mainWindow.Show();
+        Close();  
+    } 
 }

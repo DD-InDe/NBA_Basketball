@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\deer\RiderProjects\NBA_Basketball\NBA_Basketball\App.xaml
-10-1415990194
+19-560566402
 
-351783389092
-234-1636116339
-AllPages\VisitorsPages\MatchupDetailPage.xaml;AllPages\VisitorsPages\MatchupListPage.xaml;AllPages\VisitorsPages\PhotosPage.xaml;AllPages\VisitorsPages\PlayerDetailPage.xaml;AllPages\VisitorsPages\PlayersMainPage.xaml;AllPages\VisitorsPages\TeamDetailPage.xaml;AllPages\VisitorsPages\TeamsMainPage.xaml;AllPages\VisitorsPages\VisitorMenuPage.xaml;AllWindows\MainScreenWindow.xaml;AllWindows\MainWindow.xaml;
+45-1991140140
+246-1558219600
+AllPages\AdminLoginPage.xaml;AllPages\EventAdminPages\AdminMenuPage.xaml;AllPages\EventAdminPages\ManageMatchupsPage.xaml;AllPages\EventAdminPages\ManagePlayersPage.xaml;AllPages\EventAdminPages\ManageSeasonsPage.xaml;AllPages\EventAdminPages\ManageTeamsPage.xaml;AllPages\EventAdminPages\MatchupAddPage.xaml;AllPages\TechAdminPages\AdminMenuPage.xaml;AllPages\TechAdminPages\TeamReportPage.xaml;AllPages\VisitorsPages\MatchupDetailPage.xaml;AllPages\VisitorsPages\MatchupListPage.xaml;AllPages\VisitorsPages\PhotosPage.xaml;AllPages\VisitorsPages\PlayerDetailPage.xaml;AllPages\VisitorsPages\PlayersMainPage.xaml;AllPages\VisitorsPages\TeamDetailPage.xaml;AllPages\VisitorsPages\TeamsMainPage.xaml;AllPages\VisitorsPages\VisitorMenuPage.xaml;AllWindows\MainScreenWindow.xaml;AllWindows\MainWindow.xaml;
 
-False
+True
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NBA_Basketball.AllPages.AdminPages;
 using NBA_Basketball.AllPages.VisitorsPages;
 using NBA_Basketball.AllWindows;
 using NBA_Basketball.Entities;
@@ -28,15 +30,17 @@ namespace NBA_Basketball.AllWindowsWindow
         public MainWindow()
         {
             InitializeComponent();
-            AppMain appMain = new AppMain();
+            Application.Current.MainWindow = this;
+            appMain = new AppMain();
             appMain.SeasonShow();
             CurrentSeasonTextBlock.Text = appMain.SeasonShow();
-            MainFrame.Navigate(new VisitorMenuPage());
         }
+
+        AppMain appMain;
 
         private void BackButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if(MainFrame.CanGoBack) MainFrame.GoBack();
+            if (MainFrame.CanGoBack) MainFrame.GoBack();
             else
             {
                 MainScreenWindow mainScreenWindow = new MainScreenWindow();
@@ -45,5 +49,13 @@ namespace NBA_Basketball.AllWindowsWindow
             }
         }
 
+        private void LogOutButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            File.Delete("rememberme.txt");
+            mainWindow.MainFrame.NavigationService.Navigate(new AdminLoginPage());
+            mainWindow.Show();
+            Close();
+        }
     }
 }

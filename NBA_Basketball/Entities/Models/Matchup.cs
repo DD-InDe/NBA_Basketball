@@ -59,6 +59,8 @@ public class Matchup
         }
     }
 
+    public string MatchTeams => TeamAwayNavigation.TeamName + " @ " + TeamHomeNavigation.TeamName;
+    
     public int TeamAwayScore { get; set; }
 
     public int TeamHomeScore { get; set; }
@@ -82,4 +84,5 @@ public class Matchup
     public virtual Team TeamAwayNavigation { get; set; } = null!;
 
     public virtual Team TeamHomeNavigation { get; set; } = null!;
+    
 }

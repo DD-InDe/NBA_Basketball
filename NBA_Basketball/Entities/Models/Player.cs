@@ -13,6 +13,8 @@ public partial class Player
 
     public DateTime JoinYear { get; set; }
 
+    public string ShortJoinYear => JoinYear.ToString("MM/dd/yyyy");
+    
     public decimal Height { get; set; }
 
     public decimal Weight { get; set; }

@@ -31,16 +31,21 @@
                 <!-- title -->
                 <TextBlock Grid.ColumnSpan="3" Style="{StaticResource HeaderTextBlock}" Text="{Binding ElementName=MainFrame , Path=Content.Title}" />
                 <!-- go back button -->
-                <Button x:Name="BackButton" Click="BackButton_OnClick" Grid.Column="2"
-                        Style="{StaticResource ControlButton}"
-                        HorizontalAlignment="Right" Height="22" Width="50" Content="Back" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
+                    <Button x:Name="LogOutButton" x:FieldModifier="public" Visibility="Hidden" Width="60" Height="24" Style="{StaticResource ControlButton}" 
+                    Content="LogOut"
+                            Click="LogOutButton_OnClick">
+                    </Button>
+                    <Button x:Name="BackButton" Click="BackButton_OnClick" Style="{StaticResource ControlButton}" Height="24" Width="50"
+                            Content="Back" />
+                </StackPanel>
             </Grid>
         </Border>
         <!-- lower bar -->
         <Grid Grid.Row="2" Background="#6996c2">
-            <TextBlock x:Name="CurrentSeasonTextBlock" Style="{StaticResource MainTextBlock}" Foreground="White" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="CurrentSeasonTextBlock" Style="{StaticResource MainTextBlock}" Foreground="White" HorizontalAlignment="Center" />
         </Grid>
 
-        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Row="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
